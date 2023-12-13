@@ -1,0 +1,3 @@
+##### file_for_danil file_for_olesya
+olesya 0 r
+danil r 0

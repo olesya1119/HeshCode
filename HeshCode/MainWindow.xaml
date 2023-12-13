@@ -1,0 +1,38 @@
+﻿<Window x:Class="HeshCode.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HeshCode"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition />
+            <RowDefinition  Height="0.5*" />
+            <RowDefinition/>
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Text="Логин" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" FontFamily="Book Antiqua" />
+        <TextBlock Text="Пароль" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" FontFamily="Book Antiqua" />
+        <TextBlock x:Name="error_message"  Text="" Grid.Row="5" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="18" FontFamily="Book Antiqua" Foreground="#FFFD2525"  Grid.ColumnSpan="3" />
+
+        <TextBox x:Name="textbox_login" Grid.Row="2" Grid.Column="1" FontSize="18"/>
+        <PasswordBox x:Name="passwordbox_password" Grid.Row="4" Grid.Column="1" FontSize="18" />
+
+        <Button x:Name="button_enter" Content="Войти" Grid.Row="5" Grid.Column="1" FontFamily="Book Antiqua" FontSize="22" Background="#FFCDFCFF" BorderBrush="#FF75E3F1" Foreground="#FF023396" Margin="0,62,0,0" Grid.RowSpan="2" Click="button_Click"/>
+
+
+
+    </Grid>
+</Window>
