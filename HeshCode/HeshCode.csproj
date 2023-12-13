@@ -101,5 +101,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="files\accessMatrix.txt" />
+    <Resource Include="files\file_for_danil.txt" />
+    <Resource Include="files\file_for_olesya.txt" />
+    <Resource Include="files\loginDetails.txt" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

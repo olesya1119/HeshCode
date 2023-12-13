@@ -43,7 +43,8 @@ namespace HeshCode
             {
                 if (profiles[i] == textbox_login.Text && profiles[i+1] == CreateSHA512(passwordbox_password.Password))
                 {
-                    //itsUser = true;
+                    new FilesWindow(profiles[i]).Show();
+                    Close();
                 }
             }
 

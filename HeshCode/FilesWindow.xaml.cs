@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -20,20 +21,74 @@ namespace HeshCode
     /// </summary>
     public partial class FilesWindow : Window
     {
-        public FilesWindow()
+        private List<string> access, files;
+        private string login;
+
+        public FilesWindow(string login)
         {
+            this.login = login;
+
             InitializeComponent();
-            string[][] accetsMatrix;
-            using (FileStream fstream = new FileStream("../../files/loginDetails.txt", FileMode.OpenOrCreate))
+            File();
+            CreateButtons();
+        }
+
+        private void File() {
+            string textFromFile;
+
+            using (FileStream fstream = new FileStream("../../files/accessMatrix.txt", FileMode.OpenOrCreate))
             {
                 byte[] buffer = new byte[fstream.Length];
                 // считываем данные
                 fstream.Read(buffer, 0, buffer.Length);
                 // декодируем байты в строку
-                string textFromFile = Encoding.Default.GetString(buffer);
+                textFromFile = Encoding.Default.GetString(buffer);    
+            }
+            string[] helperArray = textFromFile.Split('\n');
+            files = helperArray[0].Split(' ').Cast<string>().ToList();
+            files.RemoveAt(0);
 
-                string[] logins = textFromFile.Split(new char[] {'\n' });
+            for (int i = 1; i < helperArray.Length; i++)
+            {
+                if (helperArray[i].Split(' ')[0] == login)
+                {
+                    access = helperArray[i].Split(' ').Cast<string>().ToList();
+                    access.RemoveAt(0);
+                    break;
+                }
+
             }
         }
+
+
+
+        private void CreateButtons()
+        {
+            for (int i = 0; i < files.Count; i++)
+            {
+                Button button = new Button();
+                button.Content = files[i];
+                button.Uid = i.ToString();
+                button.Click += ButtonClick;
+                stackPanel.Children.Add(button);          
+            }
+        }
+
+
+        private void ButtonClick(object sender, RoutedEventArgs e)
+        {
+            int i = System.Convert.ToInt32((sender as Button).Uid);
+            if (access[i] == "r") {
+                string path = @"" + System.IO.Path.GetDirectoryName(System.IO.Path.GetDirectoryName(Directory.GetCurrentDirectory())) + "\\files\\" + files[i];
+                System.Diagnostics.Process.Start(path);  
+            }
+
+            else
+            {
+                textBox.Text = "Вам запрещен доступ для этого файла!";
+            }
+        }
+
+
     }
 }
