@@ -78,8 +78,8 @@ namespace HeshCode
         private void ButtonClick(object sender, RoutedEventArgs e)
         {
             int i = System.Convert.ToInt32((sender as Button).Uid);
-            if (access[i] == "r") {
-                string path = @"" + System.IO.Path.GetDirectoryName(System.IO.Path.GetDirectoryName(Directory.GetCurrentDirectory())) + "\\files\\" + files[i];
+            if (access[i].Trim() == "r") {
+                string path = @"" + System.IO.Path.GetDirectoryName(System.IO.Path.GetDirectoryName(Directory.GetCurrentDirectory())) + "\\files\\" + files[i].Trim();
                 System.Diagnostics.Process.Start(path);  
             }
 

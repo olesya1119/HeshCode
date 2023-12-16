@@ -29,6 +29,8 @@ namespace HeshCode
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
+            Console.WriteLine(CreateSHA512(textbox_login.Text));
+            Console.WriteLine(CreateSHA512(passwordbox_password.Password));
             string[] profiles;
             using (FileStream fstream = new FileStream("../../files/loginDetails.txt", FileMode.OpenOrCreate))
             {
@@ -41,7 +43,7 @@ namespace HeshCode
             }
             for (int i = 0; i < profiles.Length; i+=2)
             {
-                if (profiles[i] == textbox_login.Text && profiles[i+1] == CreateSHA512(passwordbox_password.Password))
+                if (profiles[i].Trim() == textbox_login.Text.Trim() && profiles[i+1].Trim() == CreateSHA512(passwordbox_password.Password))
                 {
                     new FilesWindow(profiles[i]).Show();
                     Close();
